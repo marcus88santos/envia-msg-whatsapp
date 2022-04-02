@@ -1,0 +1,75 @@
+.mensagem {
+	background-color: #add8e6f9;
+	border: 1px solid #22222220;
+	border-radius: 0.5em;
+	margin-bottom: 2%;
+	margin-inline: 2%;
+	padding: 2%;
+	padding-bottom: 0;
+}
+.mensagem:last-child {
+	margin-bottom: 0;
+}
+.mensagem__header {
+	/*  */
+}
+.mensagem__input_tipo {
+	align-items: center;
+	height: 30px;
+	width: 200px;
+}
+.mensagem__icon {
+	background-color: #aaaaaa99;
+	border-radius: 50%;
+	cursor: pointer;
+	/* display: none; */
+	font-size: 15px;
+	font-weight: bold;
+	padding: 1.5%;
+	margin-left: 5%;
+}
+.mensagem__icon_delete {
+	color: red;
+}
+.mensagem__icon_save {
+	color: #009900;
+}
+.mensagem__button {
+	height: 30px !important;
+	margin-inline-start: 5% !important;
+	padding: 3px 7px !important;
+	width: 30px !important;
+}
+.mensagem__body {
+	margin-top: 2%;
+	margin-bottom: 1%;
+}
+.mensagem__body > span {
+	width: 100%;
+}
+.mensagem__body__text_input, .mensagem__body__url_input {
+	width: 100%;
+}
+.mensagem__icon_emoji {
+	bottom: 0.6rem !important;
+	cursor: pointer;
+	font-size: 18px;
+	top:auto !important;
+}
+.mensagem__icon_folder {
+	cursor: pointer;
+	font-size: 20px;
+}
+.mensagem__body__upload {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	font-size: 15px;
+	margin-bottom: 2%;
+	margin-top: 1%;
+}
+.mensagem__body__upload > div > span {
+	height: 30px;
+	margin-right: 0.5em;
+	padding-inline: 0.5em;
+}

@@ -1,0 +1,14 @@
+.mensagensEdicao {
+	margin-bottom: 2%;
+}
+.button {
+	height: 30px !important;
+	margin: 2% !important;
+	padding: 3px 7px !important;
+	width: 30px !important;
+}
+@media (min-width: 900px) {
+	.mensagensEdicao {
+		margin-bottom: 0;
+	}
+}

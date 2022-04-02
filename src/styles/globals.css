@@ -1,0 +1,32 @@
+html,
+body {
+	width: 100vw;
+	padding: 0;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+.section__title {
+	color: #222222;
+	display: flex;
+	flex-direction: row;
+	padding: 2%;
+	align-items: baseline;
+}
+.section__title > img {
+	height: 1em;
+	padding-right: 1%;
+}
+.section__title > h1 {
+	font-size: 25px;
+}

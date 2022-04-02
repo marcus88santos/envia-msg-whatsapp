@@ -1,0 +1,16 @@
+.mensagens {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.mensagens > * {
+	width: 100%;
+}
+@media (min-width: 900px) {
+	.mensagens {
+		flex-direction: row;
+	}
+	.mensagens > * {
+		width: 49%;
+	}
+}
