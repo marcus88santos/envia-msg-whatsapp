@@ -119,14 +119,14 @@ export default function Mensagem (props) {
 						auto
 					/>
 					{msgUrl.name ? msgUrl.name : 'Escolha uma imagem'}
-					<form runat='server'>
-						<input
-							accept='image/*'
-							type='file'
-							id='imgInp'
-							onChange={e => handleUpload(e.target)}
-						/>
-					</form>
+					<input
+						accept='image/*'
+						type='file'
+						id='imgInp'
+						onChange={e => handleUpload(e.target)}
+					/>
+					{/* <form runat='server'>
+					</form> */}
 				</span>
 			</div>
 		</div>
