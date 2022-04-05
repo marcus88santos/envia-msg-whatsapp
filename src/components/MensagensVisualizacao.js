@@ -14,7 +14,14 @@ export default function mensagensVisualizacao (props) {
 	return (
 		<section className={styles.mensagensVisualizacao}>
 			<div className='section__title'>
-				<Image src='/icon-visualizacao.jpg' alt='visualizacao' />
+				<Image
+					className='section__title_icon'
+					src='/icon-visualizacao.jpg'
+					alt='visualizacao'
+					width='10px'
+					height='10px'
+					layout='intrinsic'
+				/>
 				<h1>Visualização</h1>
 			</div>
 			<div className={styles.mensagensVisualizacao__tela}>
@@ -81,7 +88,16 @@ export default function mensagensVisualizacao (props) {
 											msg.msgTipo == 'texto' ? (
 												msgTextAlterada(msg)
 											) : (
-												<Image src={msg.msgUrl.base64} alt='' />
+												<Image
+													className={
+														styles.mensagensVisualizacao__tela__body_msgs_textImg_img
+													}
+													src={msg.msgUrl.base64}
+													alt=''
+													width='100px'
+													height='100px'
+													layout='intrinsic'
+												/>
 											)
 										) : null}
 										<span>

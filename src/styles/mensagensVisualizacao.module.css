@@ -109,9 +109,11 @@
 	position: relative;
 	top: 3px;
 }
-.mensagensVisualizacao__tela__body_msgs_textImg > img {
-	max-width: 50vw;
-	max-height: 45vh;
+.mensagensVisualizacao__tela__body_msgs_textImg_img {
+	/* max-width: 50vw;
+	max-height: 45vh; */
+	width: 100px !important;
+	height: 100px !important;
 }
 .mensagensVisualizacao__tela__body_msgs_fala {
 	align-self: initial;

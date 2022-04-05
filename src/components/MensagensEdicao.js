@@ -55,7 +55,14 @@ export default function MensagensEdicao (props) {
 	return (
 		<section className={styles.mensagensEdicao}>
 			<div className='section__title'>
-				<Image src='/icon-mensagens.png' alt='mensagens' />
+				<Image
+					className='section__title_icon'
+					src='/icon-mensagens.png'
+					alt='mensagens'
+					width='10px'
+					height='10px'
+					layout='intrinsic'
+				/>
 				<h1>Mensagens</h1>
 			</div>
 			<div className='mensagens'>

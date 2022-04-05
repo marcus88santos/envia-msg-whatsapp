@@ -23,7 +23,7 @@ a {
 	padding: 2%;
 	align-items: baseline;
 }
-.section__title > img {
+.section__title > .section__title_icon {
 	height: 1em;
 	padding-right: 1%;
 }
