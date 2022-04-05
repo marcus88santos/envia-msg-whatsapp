@@ -96,7 +96,7 @@ export default function mensagensVisualizacao (props) {
 										</span>
 									</div>
 									<span
-										class={
+										className={
 											styles.mensagensVisualizacao__tela__body_msgs_fala
 										}
 										style={
@@ -108,7 +108,7 @@ export default function mensagensVisualizacao (props) {
 											viewBox='0 0 8 13'
 											width='8'
 											height='13'
-											class=''>
+											className=''>
 											<path
 												opacity='.13'
 												d='M5.188 1H0v11.193l6.467-8.625C7.526 2.156 6.958 1 5.188 1z'></path>
