@@ -80,7 +80,7 @@ export default function mensagensVisualizacao (props) {
 											msg.msgTipo == 'texto' ? (
 												msgTextAlterada(msg)
 											) : (
-												<image src={msg.msgUrl.base64} alt='' />
+												<img src={msg.msgUrl.base64} alt='' />
 											)
 										) : null}
 										<span>
