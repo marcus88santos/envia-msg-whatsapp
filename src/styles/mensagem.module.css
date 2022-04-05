@@ -26,7 +26,6 @@
 	font-size: 15px;
 	font-weight: bold;
 	padding: 1.5%;
-	margin-left: 5%;
 }
 .mensagem__icon_delete {
 	color: red;
@@ -36,7 +35,7 @@
 }
 .mensagem__button {
 	height: 30px !important;
-	margin-inline-start: 5% !important;
+	margin-inline-start: 4% !important;
 	padding: 3px 7px !important;
 	width: 30px !important;
 }

@@ -1,3 +1,253 @@
 .mensagensVisualizacao {
 	/*  */
 }
+.mensagensVisualizacao__tela {
+	background-color: rgb(5, 94, 84);
+	margin-inline: 5%;
+}
+.mensagensVisualizacao__tela__header {
+	display: flex;
+	flex-direction: row;
+	padding-left: 1%;
+	width: 100%;
+}
+.mensagensVisualizacao__tela__header_contact {
+	display: flex;
+	flex-direction: row;
+	width: 65%;
+}
+.mensagensVisualizacao__tela__header_avatar {
+	align-items: center;
+	display: flex;
+	color: white;
+	flex-direction: row;
+	margin-inline: 3%;
+	padding-block: 2%;
+}
+.mensagensVisualizacao__tela__header_avatar > i:first-child {
+	font-size: 12px !important;
+}
+.mensagensVisualizacao__tela__header_avatar > :last-child {
+	background-color: rgb(230, 230, 230);
+	border-radius: 50%;
+	font-size: 28px !important;
+	/* height: 70% !important; */
+	/* width: 50px; */
+	margin-left: 0.1em;
+	padding: 0.1em;
+}
+.mensagensVisualizacao__tela__header_name {
+	color: white;
+	font-size:x-small;
+	align-self:center;
+}
+.mensagensVisualizacao__tela__header_name > span:first-child {
+	font-size:medium;
+	font-weight: bold;
+}
+.mensagensVisualizacao__tela__header_icons {
+	align-items: center;
+	color: white;
+	display: flex;
+	flex-direction: row;
+	font-size: 25px !important;
+	justify-content: space-between;
+	margin-right: 2%;
+	width: 35%;
+}
+.mensagensVisualizacao__tela__header_icons > svg:nth-child(2) {
+	font-size: 18px !important;
+}
+.mensagensVisualizacao__tela__header_icons > * {
+	margin-left: 8%;
+}
+.mensagensVisualizacao__tela__header_icons > :last-child {
+	margin-left: 0;
+}
+.mensagensVisualizacao__tela__body {
+	background-color: rgb(230, 230, 230);
+}
+.mensagensVisualizacao__tela__body_msgs {
+	display: flex;
+	flex-direction: column;
+	height: 80vh;
+	padding-left: 20%;
+	padding-right: 2%;
+	padding-top: 2%;
+	overflow-y: scroll;
+	scrollbar-width: 10px;
+}
+.mensagensVisualizacao__tela__body_msgs::-webkit-scrollbar {
+	width: 10px;
+}
+.mensagensVisualizacao__tela__body_msgs::-webkit-scrollbar-track {
+	background: #f1f1f1; 
+}
+.mensagensVisualizacao__tela__body_msgs::-webkit-scrollbar-thumb {
+	background: #aaa; 
+}
+.mensagensVisualizacao__tela__body_msgs::-webkit-scrollbar-thumb:hover {
+	background: #888; 
+}
+.mensagensVisualizacao__tela__body_msgs_msg{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	padding-block: 0.5%;
+}
+.mensagensVisualizacao__tela__body_msgs_textImg {
+	background-color: #d9fdd3;
+	font-size: 12px;
+	padding: 2%;
+	white-space: pre-wrap;
+	word-break:break-word;
+}
+.mensagensVisualizacao__tela__body_msgs_textImg > span:nth-child(2) {
+	color: rgb(18,207,233);
+	float: right;
+	margin-left: 5px;
+	position: relative;
+	top: 3px;
+}
+.mensagensVisualizacao__tela__body_msgs_textImg > img {
+	max-width: 50vw;
+	max-height: 45vh;
+}
+.mensagensVisualizacao__tela__body_msgs_fala {
+	align-self: initial;
+	color: #d9fdd3;
+	display: flex;
+}
+.mensagensVisualizacao__tela__body_footer {
+	align-items: center;
+	color: rgb(130, 130, 130);
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+.mensagensVisualizacao__tela__body_footer_icons {
+	align-items: center;
+	background-color: white;
+	border-radius: 8% / 100%;
+	display: flex;
+	flex: 1;
+	margin-block: 2%;
+	margin-left: 1.5%;
+	margin-right: 1.5%;
+	padding: 1%;
+}
+.mensagensVisualizacao__tela__body_footer_icons > :first-child {
+	font-size: 22px;
+	margin-left: 2%;
+	margin-right: 2%;
+}
+.mensagensVisualizacao__tela__body_footer_icons > span {
+	flex: 1;
+	font-size: 17px;
+}
+.mensagensVisualizacao__tela__body_footer_icons > :nth-child(3) {
+	margin-right: 6%;
+	transform: rotate(-90deg)
+}
+.mensagensVisualizacao__tela__body_footer_icons > :nth-child(4) {
+	font-size: 21px;
+	margin-right: 5%;
+}
+.mensagensVisualizacao__tela__body_footer_icons > :nth-child(5) {
+	font-size: 18px;
+	margin-right: 3%;
+}
+.mensagensVisualizacao__tela__body_footer_mic {
+	background-color: rgb(1, 134, 120);
+	border-radius: 50%;
+	display: flex;
+	color: white;
+	font-size: 22px;
+	margin-right: 1.5%;
+	padding: 1%;
+}
+@media (min-width: 600px) and (max-width: 900px) {
+	.mensagensVisualizacao__tela__header {
+		padding-inline: 2%;
+	}
+	.mensagensVisualizacao__tela__header_avatar > :last-child {
+		font-size: 2.2em !important;
+	}
+	.mensagensVisualizacao__tela__header_avatar > i:first-child {
+		font-size: 15px !important;
+	}
+	.mensagensVisualizacao__tela__header_name {
+		font-size: small;
+		letter-spacing: 0.8px;
+		margin-left: 1%;
+	}
+	.mensagensVisualizacao__tela__header_name > span:first-child {
+		font-size:large;
+	}
+	.mensagensVisualizacao__tela {
+		margin-inline: 8%;
+	}
+	.mensagensVisualizacao__tela__header_icons > svg:nth-child(2) {
+		font-size: 20px !important;
+	}
+	.mensagensVisualizacao__tela__header_icons > :last-child {
+		font-size: 28px !important;
+	}
+	.mensagensVisualizacao__tela__body_msgs {
+		padding-left: 30%;
+	}
+	.mensagensVisualizacao__tela__body_msgs_textImg {
+		font-size: 13px;
+	}
+	.mensagensVisualizacao__tela__body_msgs_textImg > span:nth-child(2) > svg {
+		height: 15px;
+		width: 14px;
+	}
+	.mensagensVisualizacao__tela__body_msgs_textImg > img {
+		max-width: 40vw;
+	}
+}
+@media (min-width: 900px) {
+	.mensagensVisualizacao__tela__body_msgs_textImg > img {
+		max-width: 20vw;
+		max-height: 45vh;
+	}
+}
+@media (min-width: 1100px) {
+	.mensagensVisualizacao__tela__header {
+		padding-inline: 2%;
+	}
+	.mensagensVisualizacao__tela__header_avatar > i:first-child {
+		font-size: 15px !important;
+	}
+	.mensagensVisualizacao__tela__header_avatar > :last-child {
+		font-size: 2.2em !important;
+	}
+	.mensagensVisualizacao__tela__header_name {
+		font-size: small;
+		letter-spacing: 0.8px;
+		margin-left: 1%;
+	}
+	.mensagensVisualizacao__tela__header_name > span:first-child {
+		font-size:large;
+	}
+	.mensagensVisualizacao__tela {
+		margin-inline: 8%;
+	}
+	.mensagensVisualizacao__tela__header_icons > svg:nth-child(2) {
+		font-size: 20px !important;
+	}
+	.mensagensVisualizacao__tela__header_icons > :last-child {
+		font-size: 28px !important;
+	}
+	.mensagensVisualizacao__tela__body_msgs {
+		padding-left: 30%;
+	}
+	.mensagensVisualizacao__tela__body_msgs_textImg {
+		font-size: 13px;
+	}
+	.mensagensVisualizacao__tela__body_msgs_textImg > span:nth-child(2) > svg {
+		height: 15px;
+		width: 14px;
+	}
+}
