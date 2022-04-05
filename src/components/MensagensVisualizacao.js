@@ -1,4 +1,5 @@
 import styles from '../styles/mensagensVisualizacao.module.css'
+import Image from 'next/image'
 import htmlParser from 'html-react-parser'
 import { AiFillDollarCircle } from 'react-icons/ai'
 import { BiDotsVerticalRounded } from 'react-icons/bi'
@@ -13,7 +14,15 @@ export default function mensagensVisualizacao (props) {
 	return (
 		<section className={styles.mensagensVisualizacao}>
 			<div className='section__title'>
-				<img src='/icon-visualizacao.jpg' alt='visualizacao' />
+				<div className='section__title_icon'>
+					<Image
+						className='section__title_icon'
+						src='/icon-visualizacao.jpg'
+						alt='visualizacao'
+						width='10px'
+						height='10px'
+					/>
+				</div>
 				<h1>Visualização</h1>
 			</div>
 			<div className={styles.mensagensVisualizacao__tela}>
@@ -52,16 +61,18 @@ export default function mensagensVisualizacao (props) {
 								let msgAlterada = ''
 								if (msg.msgText) {
 									msgAlterada = '<span>' + msg.msgText + '</span>'
-									msgAlterada = msgAlterada.replaceAll(
-										/\*.+\*/g,
-										reg => {
-											return (
-												'<b>' +
-												reg.substring(1, reg.length - 1) +
-												'</b>'
-											)
-										}
-									)
+									let i = (msgAlterada.match(/\*/g) || []).length
+									for (i; i > 0; i--) {
+										i % 2 == 0
+											? (msgAlterada = msgAlterada.replace(
+													'*',
+													'<b>'
+											  ))
+											: (msgAlterada = msgAlterada.replace(
+													'*',
+													'</b>'
+											  ))
+									}
 									msgAlterada = htmlParser(msgAlterada)
 								}
 								return msgAlterada
@@ -79,9 +90,20 @@ export default function mensagensVisualizacao (props) {
 										{msg.msgTipo ? (
 											msg.msgTipo == 'texto' ? (
 												msgTextAlterada(msg)
-											) : (
-												<img src={msg.msgUrl.base64} alt='' />
-											)
+											) : msg.msgUrl.base64 ? (
+												<div
+													className={
+														styles.mensagensVisualizacao__tela__body_msgs_textImg_img
+													}>
+													<Image
+														src={msg.msgUrl.base64}
+														alt=''
+														height={msg.msgUrl.height}
+														width={msg.msgUrl.width}
+														layout='responsive'
+													/>
+												</div>
+											) : null
 										) : null}
 										<span>
 											<svg

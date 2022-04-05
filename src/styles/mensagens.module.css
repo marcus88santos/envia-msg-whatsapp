@@ -11,6 +11,10 @@
 		flex-direction: row;
 	}
 	.mensagens > * {
+		height: auto;
 		width: 49%;
+	}
+	.mensagens > :nth-child(2) {
+		margin-bottom: auto;
 	}
 }

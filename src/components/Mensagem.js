@@ -55,12 +55,22 @@ export default function Mensagem (props) {
 	}
 
 	function handleUpload (e) {
-		// console.log(e)
+		console.log(e.files)
 		let file = e.files[0]
 		let reader = new FileReader()
 		reader.onloadend = () => {
 			// console.log(reader.result)
-			setMsgUrl({ name: file.name, base64: reader.result })
+			let img = new Image()
+			img.src = reader.result
+			img.onload = function () {
+				console.log(this.width + ' ' + this.height)
+				setMsgUrl({
+					name: file.name,
+					base64: reader.result,
+					height: this.height,
+					width: this.width,
+				})
+			}
 		}
 		reader.readAsDataURL(file)
 	}
@@ -107,21 +117,19 @@ export default function Mensagem (props) {
 				<span
 					className={styles.mensagem__body__upload}
 					style={{ display: msgTipo == 'imagem' ? 'flex' : 'none' }}>
-					<FileUpload
+					<label htmlFor={`imgInp${msg.msgId}`}>
+						<i className='pi pi-folder-open'></i>
+						Escolher
+					</label>
+					<input
 						accept='image/*'
-						chooseOptions={{ icon: 'pi pi-folder-open' }}
-						icon='pi pi-upload'
-						mode='basic'
-						name='image'
-						url='./'
-						chooseLabel='Escolher'
-						onUpload={e => handleUpload(e)}
-						auto
+						type='file'
+						id={`imgInp${msg.msgId}`}
+						onChange={e => handleUpload(e.target)}
 					/>
-					{msgUrl.name}
+					{msgUrl.name ? msgUrl.name : 'Escolha uma imagem'}
+					{/* <span>{msgUrl.name}</span> */}
 				</span>
-
-				{/* <img id='blah' src={msgUrl.base64} alt='your image' /> */}
 			</div>
 		</div>
 	)

@@ -23,9 +23,14 @@ a {
 	padding: 2%;
 	align-items: baseline;
 }
-.section__title > img {
-	height: 1em;
+.section__title > .section__title_icon {
+	align-items:center;
 	padding-right: 1%;
+	/* position: relative !important; */
+}
+.section__title > .section__title_icon > * {
+	height: 16px !important;
+	width: 16px !important;
 }
 .section__title > h1 {
 	font-size: 25px;
