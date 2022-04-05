@@ -1,4 +1,5 @@
 import styles from '../styles/mensagensVisualizacao.module.css'
+import Image from 'next/image'
 import htmlParser from 'html-react-parser'
 import { AiFillDollarCircle } from 'react-icons/ai'
 import { BiDotsVerticalRounded } from 'react-icons/bi'
@@ -13,7 +14,7 @@ export default function mensagensVisualizacao (props) {
 	return (
 		<section className={styles.mensagensVisualizacao}>
 			<div className='section__title'>
-				<img src='/icon-visualizacao.jpg' alt='visualizacao' />
+				<Image src='/icon-visualizacao.jpg' alt='visualizacao' />
 				<h1>Visualização</h1>
 			</div>
 			<div className={styles.mensagensVisualizacao__tela}>
@@ -80,7 +81,7 @@ export default function mensagensVisualizacao (props) {
 											msg.msgTipo == 'texto' ? (
 												msgTextAlterada(msg)
 											) : (
-												<img src={msg.msgUrl.base64} />
+												<Image src={msg.msgUrl.base64} alt='' />
 											)
 										) : null}
 										<span>
@@ -88,7 +89,7 @@ export default function mensagensVisualizacao (props) {
 												viewBox='0 0 16 15'
 												width='13'
 												height='12'
-												class=''>
+												className=''>
 												<path
 													fill='currentColor'
 													d='m15.01 3.316-.478-.372a.365.365 0 0 0-.51.063L8.666 9.879a.32.32 0 0 1-.484.033l-.358-.325a.319.319 0 0 0-.484.032l-.378.483a.418.418 0 0 0 .036.541l1.32 1.266c.143.14.361.125.484-.033l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0-.478-.372a.365.365 0 0 0-.51.063L4.566 9.879a.32.32 0 0 1-.484.033L1.891 7.769a.366.366 0 0 0-.515.006l-.423.433a.364.364 0 0 0 .006.514l3.258 3.185c.143.14.361.125.484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z'></path>
@@ -96,7 +97,7 @@ export default function mensagensVisualizacao (props) {
 										</span>
 									</div>
 									<span
-										class={
+										className={
 											styles.mensagensVisualizacao__tela__body_msgs_fala
 										}
 										style={
@@ -108,7 +109,7 @@ export default function mensagensVisualizacao (props) {
 											viewBox='0 0 8 13'
 											width='8'
 											height='13'
-											class=''>
+											className=''>
 											<path
 												opacity='.13'
 												d='M5.188 1H0v11.193l6.467-8.625C7.526 2.156 6.958 1 5.188 1z'></path>

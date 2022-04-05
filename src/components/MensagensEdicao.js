@@ -1,4 +1,5 @@
 import react from 'react'
+import Image from 'next/image'
 import styles from '../styles/mensagensEdicao.module.css'
 import Mensagem from './Mensagem'
 import { Button } from 'primereact/button'
@@ -54,7 +55,7 @@ export default function MensagensEdicao (props) {
 	return (
 		<section className={styles.mensagensEdicao}>
 			<div className='section__title'>
-				<img src='/icon-mensagens.png' alt='mensagens' />
+				<Image src='/icon-mensagens.png' alt='mensagens' />
 				<h1>Mensagens</h1>
 			</div>
 			<div className='mensagens'>
