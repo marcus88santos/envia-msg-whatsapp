@@ -25,12 +25,13 @@ a {
 }
 .section__title > .section__title_icon {
 	align-items:center;
-	padding-right: 1%;
-	/* position: relative !important; */
+	margin-right: 10px;
 }
 .section__title > .section__title_icon > * {
+	font-size: 18px;
 	height: 16px !important;
 	width: 16px !important;
+	align-items: middle;
 }
 .section__title > h1 {
 	font-size: 25px;

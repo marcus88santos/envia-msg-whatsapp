@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Header from '../components/Header'
 import Mensagens from '../components/Mensagens'
+import Contatos from '../components/Contatos'
 import react from 'react'
 
 import 'primereact/resources/primereact.css'
@@ -10,6 +11,7 @@ import styles from '../styles/index.module.css'
 
 export default function Home () {
 	const [msgList, setMsgList] = react.useState([])
+	const [contatos, setContatos] = react.useState([])
 
 	react.useEffect(() => {
 		setMsgList(() => {
@@ -33,6 +35,7 @@ export default function Home () {
 			<Header />
 			<main className={styles.main}>
 				<Mensagens msgList={msgList} setMsgList={setMsgList} />
+				<Contatos contatos={contatos} setContatos={setContatos} />
 			</main>
 			{/* <Footer/> */}
 		</>
