@@ -27,12 +27,6 @@
 	font-weight: bold;
 	padding: 1.5%;
 }
-.mensagem__icon_delete {
-	color: red;
-}
-.mensagem__icon_save {
-	color: #009900;
-}
 .mensagem__button {
 	height: 30px !important;
 	margin-inline-start: 4% !important;
@@ -63,6 +57,7 @@
 	align-items: center;
 	margin-bottom: 2%;
 	margin-top: 1%;
+	width: 100%;
 }
 .mensagem__body__upload > label {
 	align-items: center;
@@ -71,21 +66,24 @@
 	border: 1px solid #2196f3;
 	border-radius: 3px;
 	cursor: pointer;
-	display: flex;
 	font-size: 15px;
 	font-weight: 400;
 	margin-right: 2%;
-	padding: 0.8% 1.8%;
+	padding: 0;
 	vertical-align: middle;
-	transition: background-color .2s, color .2s, border-color .2s, box-shadow .2s;
+	min-width:100px;
 }
 .mensagem__body__upload > label:hover {
 	background-color: #1f89e0;
 	border-color: #1f89e0;
 }
 .mensagem__body__upload > label > i{
-	margin-right: 0.5em;
+	margin: 0.5em;
+	/* margin-right: 0.5em; */
 }
 .mensagem__body__upload > input {
 	display: none;
+}
+.mensagem__body__upload > span {
+	font-size: 14px;
 }

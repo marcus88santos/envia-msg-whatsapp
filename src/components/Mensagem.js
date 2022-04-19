@@ -1,8 +1,6 @@
 import styles from '../styles/mensagem.module.css'
 import { Button } from 'primereact/button'
 import { Dropdown } from 'primereact/dropdown'
-import { FileUpload } from 'primereact/fileupload'
-import { InputText } from 'primereact/inputtext'
 import { InputTextarea } from 'primereact/inputtextarea'
 import { FaRegSmile } from 'react-icons/fa'
 
@@ -55,7 +53,7 @@ export default function Mensagem (props) {
 	}
 
 	function handleUpload (e) {
-		console.log(e.files)
+		// console.log(e.files)
 		let file = e.files[0]
 		let reader = new FileReader()
 		reader.onloadend = () => {
@@ -63,7 +61,7 @@ export default function Mensagem (props) {
 			let img = new Image()
 			img.src = reader.result
 			img.onload = function () {
-				console.log(this.width + ' ' + this.height)
+				// console.log(this.width + ' ' + this.height)
 				setMsgUrl({
 					name: file.name,
 					base64: reader.result,
@@ -87,12 +85,12 @@ export default function Mensagem (props) {
 				/>
 				<Button
 					icon='pi pi-trash'
-					className={`p-button-rounded p-button-danger p-button-sm ${styles.mensagem__button}`}
+					className={`p-button p-button-raised p-button-rounded p-button-danger p-button-sm ${styles.mensagem__button}`}
 					onClick={handleDelete}
 				/>
 				<Button
 					icon='pi pi-save'
-					className={`p-button-rounded p-button-success p-button-sm ${styles.mensagem__button}`}
+					className={`p-button p-button-raised p-button-rounded p-button-success p-button-sm ${styles.mensagem__button}`}
 					onClick={handleSave}
 					disabled={btnSaveToggle}
 				/>
@@ -117,9 +115,15 @@ export default function Mensagem (props) {
 				<span
 					className={styles.mensagem__body__upload}
 					style={{ display: msgTipo == 'imagem' ? 'flex' : 'none' }}>
-					<label htmlFor={`imgInp${msg.msgId}`}>
+					<label
+						htmlFor={`imgInp${msg.msgId}`}
+						className='p-button p-button-raised'>
 						<i className='pi pi-folder-open'></i>
-						Escolher
+						{msgUrl.name ? (
+							<span>Substituir</span>
+						) : (
+							<span>Escolher</span>
+						)}
 					</label>
 					<input
 						accept='image/*'
@@ -127,8 +131,11 @@ export default function Mensagem (props) {
 						id={`imgInp${msg.msgId}`}
 						onChange={e => handleUpload(e.target)}
 					/>
-					{msgUrl.name ? msgUrl.name : 'Escolha uma imagem'}
-					{/* <span>{msgUrl.name}</span> */}
+					{msgUrl.name ? (
+						<span>Arquivo: {msgUrl.name}</span>
+					) : (
+						<span>Escolha uma imagem</span>
+					)}
 				</span>
 			</div>
 		</div>
