@@ -1,8 +1,6 @@
 import styles from '../styles/mensagem.module.css'
 import { Button } from 'primereact/button'
 import { Dropdown } from 'primereact/dropdown'
-import { FileUpload } from 'primereact/fileupload'
-import { InputText } from 'primereact/inputtext'
 import { InputTextarea } from 'primereact/inputtextarea'
 import { FaRegSmile } from 'react-icons/fa'
 
@@ -63,7 +61,7 @@ export default function Mensagem (props) {
 			let img = new Image()
 			img.src = reader.result
 			img.onload = function () {
-				console.log(this.width + ' ' + this.height)
+				// console.log(this.width + ' ' + this.height)
 				setMsgUrl({
 					name: file.name,
 					base64: reader.result,

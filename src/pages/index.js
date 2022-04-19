@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import Mensagens from '../components/Mensagens'
 import Contatos from '../components/Contatos'
+import Enviar from '../components/Enviar'
 import react from 'react'
 
 import 'primereact/resources/primereact.css'
@@ -11,19 +12,34 @@ import styles from '../styles/index.module.css'
 
 export default function Home () {
 	const [msgList, setMsgList] = react.useState([])
-	const [contatos, setContatos] = react.useState([])
+	const [contatos, setContatos] = react.useState({})
+	const [contatosSelecionados, setContatosSelecionados] = react.useState([])
 
 	react.useEffect(() => {
 		setMsgList(() => {
-			if (JSON.parse(localStorage.getItem('msgList')).length == 0)
+			if (JSON.parse(localStorage.getItem('msgList')).length == 0) {
 				return [{ msgId: 1, msgTipo: '', msgText: '', msgUrl: {} }]
-			else return JSON.parse(localStorage.getItem('msgList'))
+			} else return JSON.parse(localStorage.getItem('msgList'))
 		})
+		setContatos(
+			JSON.parse(localStorage.getItem('contatos')) || {
+				botao: 'Carregar contatos',
+				contatos: [],
+				duplicados: [],
+				enviados: [],
+				errados: [],
+				icone: '',
+				status: 'Escolha um arquivo ".csv"',
+			}
+		)
 	}, [])
 
 	react.useEffect(() => {
 		localStorage.setItem('msgList', JSON.stringify(msgList))
 	}, [msgList])
+	react.useEffect(() => {
+		localStorage.setItem('contatos', JSON.stringify(contatos))
+	}, [contatos])
 
 	return (
 		<>
@@ -35,7 +51,16 @@ export default function Home () {
 			<Header />
 			<main className={styles.main}>
 				<Mensagens msgList={msgList} setMsgList={setMsgList} />
-				<Contatos contatos={contatos} setContatos={setContatos} />
+				<Contatos
+					contatos={contatos}
+					setContatos={setContatos}
+					contatosSelecionados={contatosSelecionados}
+					setContatosSelecionados={setContatosSelecionados}
+				/>
+				<Enviar
+					contatos={contatos}
+					contatosSelecionados={contatosSelecionados}
+				/>
 			</main>
 			{/* <Footer/> */}
 		</>

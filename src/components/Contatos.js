@@ -1,19 +1,26 @@
 import react from 'react'
 import { DataTable } from 'primereact/datatable'
 import { Column } from 'primereact/column'
+import { FilterMatchMode, FilterOperator } from 'primereact/api'
+import { MdOutlineScheduleSend } from 'react-icons/md'
 import styles from '../styles/contatos.module.css'
 
 export default function Contatos (props) {
 	const [contatos, setContatos] = react.useState(props.contatos)
-	const [contatosCsv, setContatosCsv] = react.useState({
-		status: 'Escolha um arquivo ".csv"',
-		botao: 'Carregar contatos',
-		icone: '',
-		errados: [],
-		duplicados: [],
-	})
+	const [contatosSelecionados, setContatosSelecionados] = react.useState(
+		props.contatosSelecionados
+	)
+
+	react.useEffect(() => {
+		setContatos(props.contatos)
+	}, [props.contatos])
+
+	react.useEffect(() => {
+		setContatosSelecionados(props.contatosSelecionados)
+	}, [props.contatosSelecionados])
+
 	function handleUpload (e) {
-		setContatosCsv(prevState => ({
+		setContatos(prevState => ({
 			...prevState,
 			status: 'Carregando...',
 			icone: 'pi pi-spin pi-spinner',
@@ -35,7 +42,7 @@ export default function Contatos (props) {
 		// console.log(dados)
 		let colunasTel = []
 		let colunas = dados[0].split(',')
-		let contatos = []
+		let contatosCsv = []
 		for (let i = 0; i < colunas.length; i++) {
 			colunas[i].match(/Phone[^Type]*?Value/) ? colunasTel.push(i) : null
 		}
@@ -44,7 +51,7 @@ export default function Contatos (props) {
 			// console.log(infoContato)
 			for (let t = 0; t < colunasTel.length; t++) {
 				infoContato[`${colunasTel[t]}`].length > 0
-					? contatos.push({
+					? contatosCsv.push({
 							nome: infoContato[0],
 							telefone: infoContato[`${colunasTel[t]}`].split(
 								' ::: '
@@ -53,12 +60,12 @@ export default function Contatos (props) {
 					: null
 			}
 		}
-		padronizarTels(contatos)
+		padronizarTels(contatosCsv)
 	}
-	function padronizarTels (contatos) {
+	function padronizarTels (contatosCsv) {
 		// console.log(contatos)
 		let contatosErrados = []
-		contatos.map(contato => {
+		contatosCsv.map(contato => {
 			contato.telefone = contato.telefone.replace('-', '')
 			contato.telefone = contato.telefone.replaceAll(' ', '')
 			contato.telefone = contato.telefone.replace('+', '')
@@ -107,26 +114,21 @@ export default function Contatos (props) {
 					telefone: contato.telefone,
 				})
 			}
+			if (contato.nome.substring(0, 1) == '"')
+				contato.nome = contato.nome.substring(1, contato.nome.length)
 			return contato
 		})
-		setContatosCsv(prevState => ({
-			...prevState,
-			errados: contatosErrados,
-		}))
-		// console.log(contatosErrados)
-		verifDuplicContatos(contatos)
+		verifDuplicContatos(contatosCsv, contatosErrados)
 	}
-	function verifDuplicContatos (contatos) {
-		//VERIFICAR DUPLICIDADE
-		// console.log(contatos)
 
+	function verifDuplicContatos (contatosCsv, contatosErrados) {
 		let contatosDuplicados = []
 
-		contatos.forEach(contato => {
-			for (let i = 0; i < contatos.length; i++) {
+		contatosCsv.forEach(contato => {
+			for (let i = 0; i < contatosCsv.length; i++) {
 				if (
-					contato.telefone == contatos[i].telefone &&
-					contato.nome != contatos[i].nome
+					contato.telefone == contatosCsv[i].telefone &&
+					contato.nome != contatosCsv[i].nome
 				) {
 					let pos = contatosDuplicados
 						.map(el => {
@@ -140,7 +142,7 @@ export default function Contatos (props) {
 							telefone: contato.telefone,
 						})
 						contatosDuplicados.push({
-							nome: contatos[i].nome,
+							nome: contatosCsv[i].nome,
 							telefone: contato.telefone,
 						})
 					} else {
@@ -150,7 +152,7 @@ export default function Contatos (props) {
 								telefone: contato.telefone,
 							})
 							contatosDuplicados.push({
-								nome: contatos[i].nome,
+								nome: contatosCsv[i].nome,
 								telefone: contato.telefone,
 							})
 						}
@@ -174,29 +176,94 @@ export default function Contatos (props) {
 			return contato
 		})
 
-		setContatosCsv(prevState => ({
-			...prevState,
-			duplicados: contatosDuplicados,
-		}))
+		contatosCsv.map(contato => {
+			if (contato.telefone.length == 13) {
+				contato.telefone =
+					'+' +
+					contato.telefone.substring(0, 2) +
+					' (' +
+					contato.telefone.substring(2, 4) +
+					') ' +
+					contato.telefone.substring(4, 5) +
+					' ' +
+					contato.telefone.substring(5, 9) +
+					'-' +
+					contato.telefone.substring(9, 13)
+			}
+			return contato
+		})
 
-		setContatosCsv(prevState => ({
+		props.setContatos(prevState => ({
 			...prevState,
 			botao: 'Substituir Contatos',
-			status: 'Concluído',
+			contatos: contatosCsv,
+			duplicados: contatosDuplicados,
+			errados: contatosErrados,
 			icone: 'pi pi-check',
+			status: 'Concluído',
 		}))
 	}
 
 	const contatosErradosHeader = (
-		<div className='table-header' style={{ color: 'darkred' }}>
+		<div
+			className='table-header'
+			style={{ color: 'darkred', fontSize: '17px' }}>
 			Telefones fora de padrão
 		</div>
 	)
 	const contatosDuplicadosHeader = (
-		<div className='table-header' style={{ color: 'darkorange' }}>
-			Contatos Duplicados
+		<div
+			className='table-header'
+			style={{ color: 'darkorange', fontSize: '17px' }}>
+			Telefones duplicados
 		</div>
 	)
+	const contatosHeader = (
+		<div
+			className='table-header'
+			style={{ color: 'black', fontSize: '17px' }}>
+			<b style={{ color: 'darkred' }}>
+				{contatosSelecionados
+					? new Intl.NumberFormat('pt-BR').format(
+							contatosSelecionados.length
+					  )
+					: 0}{' '}
+			</b>
+			{' de '}
+			<b>
+				{contatos.contatos
+					? new Intl.NumberFormat('pt-BR').format(contatos.contatos.length)
+					: 0}
+			</b>
+			{' Selecionados'}
+		</div>
+	)
+	const enviadosHeader = (
+		<MdOutlineScheduleSend
+			style={{
+				'font-size': '20px',
+				display: 'flex',
+			}}
+		/>
+	)
+	const enviadoBodyTemplate = rowData => {
+		const contato = rowData.enviado
+		return (
+			<>
+				<i className='pi pi-circle'></i>
+			</>
+		)
+	}
+	function handleSelection (e) {
+		props.setContatosSelecionados(e.value)
+	}
+	const matchModesNome = [
+		{ label: 'Inicia com', value: FilterMatchMode.STARTS_WITH },
+		{ label: 'Contém', value: FilterMatchMode.CONTAINS },
+	]
+	const matchModesTelefone = [
+		{ label: 'Contém', value: FilterMatchMode.CONTAINS },
+	]
 
 	return (
 		<section className={styles.contatos}>
@@ -211,7 +278,7 @@ export default function Contatos (props) {
 					htmlFor='contatosInp'
 					className='p-button p-component p-button-raised p-button-warning'>
 					<i className='pi pi-folder-open'></i>
-					{contatosCsv.botao}
+					{contatos.botao}
 				</label>
 				<input
 					accept='.csv'
@@ -221,36 +288,85 @@ export default function Contatos (props) {
 					value=''
 				/>
 				<span className={styles.contatos__upload_status}>
-					{contatosCsv.status}
+					{contatos.status}
 				</span>
 				<i
-					className={`${contatosCsv.icone} ${styles.contatos__upload_icone}`}></i>
+					className={`${contatos.icone} ${styles.contatos__upload_icone}`}></i>
 			</span>
-			{contatosCsv.errados.length > 0 ? (
-				<DataTable
-					className={`${styles.contatos__upload} ${styles.contatos__upload_errados}`}
-					size='small'
-					value={contatosCsv.errados}
-					paginator
-					rows={10}
-					header={contatosErradosHeader}
-					responsiveLayout='scroll'>
-					<Column field='nome' header='Nome'></Column>
-					<Column field='telefone' header='Telefone'></Column>
-				</DataTable>
+			{Object.keys(contatos).length > 0 ? (
+				contatos.errados.length > 0 ? (
+					<DataTable
+						className={`${styles.contatos__upload} ${styles.contatos__upload_errados}`}
+						size='small'
+						value={contatos.errados}
+						paginator
+						rows={10}
+						stripedRows
+						header={contatosErradosHeader}
+						responsiveLayout='scroll'>
+						<Column field='nome' header='Nome'></Column>
+						<Column field='telefone' header='Telefone'></Column>
+					</DataTable>
+				) : null
 			) : null}
-			{contatosCsv.duplicados.length > 0 ? (
-				<DataTable
-					className={`${styles.contatos__upload} ${styles.contatos__upload_errados}`}
-					size='small'
-					value={contatosCsv.duplicados}
-					paginator
-					rows={10}
-					header={contatosDuplicadosHeader}
-					responsiveLayout='scroll'>
-					<Column field='nome' header='Nome'></Column>
-					<Column field='telefone' header='Telefone'></Column>
-				</DataTable>
+			{Object.keys(contatos).length > 0 ? (
+				contatos.duplicados.length > 0 ? (
+					<DataTable
+						className={`${styles.contatos__upload} ${styles.contatos__upload_errados}`}
+						size='small'
+						value={contatos.duplicados}
+						paginator
+						rows={10}
+						stripedRows
+						header={contatosDuplicadosHeader}
+						responsiveLayout='scroll'>
+						<Column field='nome' header='Nome'></Column>
+						<Column field='telefone' header='Telefone'></Column>
+					</DataTable>
+				) : null
+			) : null}
+			{Object.keys(contatos).length > 0 ? (
+				contatos.contatos.length > 0 ? (
+					<DataTable
+						className={`${styles.contatos__upload} ${styles.contatos__upload_errados}`}
+						size='small'
+						value={contatos.contatos}
+						paginator
+						rows={10}
+						stripedRows
+						header={contatosHeader}
+						selection={contatosSelecionados}
+						onSelectionChange={e => handleSelection(e)}
+						dataKey='telefone'
+						responsiveLayout='scroll'>
+						<Column
+							selectionMode='multiple'
+							className={
+								styles.contatos__upload_contatosHeader
+							}></Column>
+						<Column
+							field='nome'
+							header='Nome'
+							sortable
+							filter
+							filterPlaceholder='Digite um nome'
+							showFilterOperator={false}
+							filterMatchModeOptions={matchModesNome}></Column>
+						<Column
+							field='telefone'
+							header='Telefone'
+							filterPlaceholder='Digite um número'
+							showFilterOperator={false}
+							filterMatchMode='contains'
+							filterMatchModeOptions={matchModesTelefone}
+							showFilterMatchModes={false}
+							filter></Column>
+						<Column
+							className={`${styles.contatos__upload_contatosEnviados} ${styles.contatos__upload_contatosHeader}`}
+							header={enviadosHeader}
+							body={enviadoBodyTemplate}></Column>
+					</DataTable>
+				) : null
 			) : null}
 		</section>
 	)

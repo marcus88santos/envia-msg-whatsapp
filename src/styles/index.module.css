@@ -1,6 +1,6 @@
 .main {
 	background-color: lightgray;
-	padding: min(5%, 1em) 5%;
+	padding: min(2%, 1em) 2%;
 	/* min-height: 100vh;
 	flex: 1;
 	display: flex;
@@ -12,4 +12,7 @@
 	background-color: #90ee9099;
 	border-radius: 0.5em;
 	/* height: 200px; */
+}
+@media (min-width: 900px) {
+	.main {padding: min(5%, 1em) 5%;}
 }

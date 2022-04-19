@@ -55,6 +55,15 @@
 .contatos__upload_errados > :nth-child(3) > button {
 	min-width: 1em;
 }
+.contatos__upload_contatosHeader {
+	text-align: center !important;
+}
+.contatos__upload_contatosHeader > * {
+	justify-content: center !important;
+}
+.contatos__upload_contatosEnviados {
+	
+}
 
 @media (max-width: 900px) {
 	.contatos__upload > label {
